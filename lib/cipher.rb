@@ -10,10 +10,10 @@ class Cipher
     @date_entry = gets.chomp.to_s
     @date = date_entry * date_entry
     @rotation = 1
-    @date_a = date_entry(-1).to_i
-    @date_b = date_entry(-2).to_i
-    @date_c = date_entry(-3).to_i
-    @date_d = date_entry(-4).to_i
+    @date_a = date(-1).to_i
+    @date_b = date(-2).to_i
+    @date_c = date(-3).to_i
+    @date_d = date(-4).to_i
     @key1 = nil
     @key2 = nil
     @key3 = nil
