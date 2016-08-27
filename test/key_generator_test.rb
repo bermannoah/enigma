@@ -14,14 +14,30 @@ class KeyGeneratorTest < Minitest::Test
 
 
     def test_generator_can_square_a_date
-
       key = KeyGenerator.new(101010)
       assert_equal  101010 * 101010, key.square
     end
 
     def test_cipher_can_return_last_four_digits_of_square
       key = KeyGenerator.new(101010)
-      assert_equal ["0", "1", "0", "0"], key.square.last_four
+      key.square
+      key.last_four
+      assert_equal key.date_a, 0
+      assert_equal key.date_b, 1
+      assert_equal key.date_c, 0
+      assert_equal key.date_d, 0
     end
 
+    def test_generator_can_create_final_keys
+      key = KeyGenerator.new(270816) 
+      key.initial_rotations
+      key.square
+      key.last_four
+      key.final_keys
+      # binding.pry
+      refute_equal key.key1, nil
+      refute_equal key.key2, nil
+      refute_equal key.key3, nil
+      refute_equal key.key4, nil
+    end
 end
