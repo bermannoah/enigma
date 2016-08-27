@@ -2,19 +2,19 @@ require 'pry'
 
 class KeyGenerator
   attr_reader :key, :key_a, :key_b, :key_c, :key_d, :date_entry
-  attr_accessor :date, :date_a, :date_b, :date_c, :date_d, :key1, :key2, :key3, :key4
+  attr_accessor :date, :date_a, :date_b, :date_c, :date_d, :keyA, :keyB, :keyC, :keyD
 
   def initialize(date_entry)
     @key = key
     @date_entry = date_entry
-    @date_a = nil
-    @date_b = nil
-    @date_c = nil
-    @date_d = nil
-    @key1 = nil
-    @key2 = nil
-    @key3 = nil
-    @key4 = nil
+    # @date_a = nil
+    # @date_b = nil
+    # @date_c = nil
+    # @date_d = nil
+    @keyA = nil
+    @keyB = nil
+    @keyC = nil
+    @keyD = nil
   end
 
   def key
@@ -29,7 +29,7 @@ class KeyGenerator
   end
 
   def square
-    @date = date_entry * date_entry
+    @date = date_entry.to_i * date_entry.to_i
   end
 
   def last_four
@@ -41,10 +41,10 @@ class KeyGenerator
   end
 
   def final_keys
-    @key1 = date_a + key_a
-    @key2 = date_b + key_b
-    @key3 = date_c + key_c
-    @key4 = date_d + key_d
+    @keyA = date_a + key_a
+    @keyB = date_b + key_b
+    @keyC = date_c + key_c
+    @keyD = date_d + key_d
   end
 
 end

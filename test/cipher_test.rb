@@ -6,5 +6,8 @@ require 'pry'
 
 class CipherTest < Minitest::Test
 
+  def
+
+  end
 
 end
