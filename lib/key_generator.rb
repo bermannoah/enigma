@@ -1,11 +1,51 @@
-class KeyGenerator
-  attr_reader :key
-  attr_accessor :key_a, :key_b, :key_c, :key_d
+require 'pry'
 
-  def initialize(key=rand(1000..9999).to_s)
-  @key_a = key[0,1].to_i
-  @key_b = key[1,2].to_i
-  @key_c = key[2,3].to_i
-  @key_d = key[3,4].to_i
+class KeyGenerator
+  attr_reader :key, :key_a, :key_b, :key_c, :key_d, :date_entry
+  attr_accessor :date, :date_a, :date_b, :date_c, :date_d
+
+  def initialize(date_entry)
+    @key = rand(10000..99999).to_s
+    @date_entry = date_entry
+    @date_a = nil
+    @date_b = nil
+    @date_c = nil
+    @date_d = nil
+    # @key1 = nil
+    # @key2 = nil
+    # @key3 = nil
+    # @key4 = nil
   end
+
+  def key
+    key = rand(10000..99999).to_s
+  end
+
+  def initial_rotations
+    key_a = @key[0..1].to_i
+    key_b = @key[1..2].to_i
+    key_c = @key[2..3].to_i
+    key_d = @key[3..4].to_i
+  end
+
+  def square
+    @date = date_entry * date_entry
+  end
+
+  def last_four
+    @date_a = @date(-1).to_i
+    @date_b = @date(-2).to_i
+    @date_c = @date(-3).to_i
+    @date_d = @date(-4).to_i
+  end
+
+  # def final_keys
+  #   @key1 = date_a + key_a
+  #   @key2 = date_b + key_b
+  #   @key3 = date_c + key_c
+  #   @key4 = date_d + key_d
+  # end
+
+
+
 end
