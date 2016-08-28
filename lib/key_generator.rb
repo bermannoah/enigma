@@ -13,11 +13,8 @@ class KeyGenerator
     @keyD = nil
   end
 
-  def key
-    key = rand(10000..99999).to_s
-  end
-
   def initial_rotations
+    @key = rand(10000..99999).to_s
     @key_a = key[0..1].to_i
     @key_b = key[1..2].to_i
     @key_c = key[2..3].to_i
