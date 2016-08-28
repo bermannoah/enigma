@@ -21,7 +21,7 @@ class Cipher < KeyGenerator
   end
 
   def rotation(key)
-    characters = ('A'..'Z').to_a
+    characters = (' '..'z').to_a
     rotated_characters = characters.rotate(key.to_i).to_a
     Hash[characters.zip(rotated_characters)]
   end

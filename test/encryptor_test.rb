@@ -34,4 +34,20 @@ class EncryptorTest < Minitest::Test
     assert_equal e.rotation_D["L"], e.encrypted[3]
     assert_equal e.rotation_A["O"], e.encrypted[4]
   end
+
+  def test_encryptor_can_encrypt_a_phrase
+    e = Encryptor.new(220909)
+    e.encrypt("MORE COFFEE")
+    assert_equal e.rotation_A["M"], e.encrypted[0]
+    assert_equal e.rotation_B["O"], e.encrypted[1]
+    assert_equal e.rotation_C["R"], e.encrypted[2]
+    assert_equal e.rotation_D["E"], e.encrypted[3]
+    assert_equal e.rotation_A[" "], e.encrypted[4]
+    assert_equal e.rotation_B["C"], e.encrypted[5]
+    assert_equal e.rotation_C["O"], e.encrypted[6]
+    assert_equal e.rotation_D["F"], e.encrypted[7]
+    assert_equal e.rotation_A["F"], e.encrypted[8]
+    assert_equal e.rotation_B["E"], e.encrypted[9]
+    assert_equal e.rotation_C["E"], e.encrypted[10]
+  end
 end
