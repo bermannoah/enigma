@@ -1,37 +1,40 @@
 require './lib/encryptor'
 require 'pry'
 
-class Decryptor < Encryptor
+class Decryptor < Cipher
 
-  attr_reader :cipher, :rotate
+  attr_reader :cipher, :rotate, :decrypt
   attr_accessor :encrypted, :rotation_count
 
   def initialize(date_entry)
-    @input = nil
-    @rotation_A = rotation(cipher.key.keyA)
-    @rotation_B = rotation(cipher.key.keyB)
-    @rotation_C = rotation(cipher.key.keyC)
-    @rotation_D = rotation(cipher.key.keyD)
+    @cipher 
+    # @rotation_A = rotation(cipher.key.keyA)
+    @decrypt_rotation_A = rotation_A.invert
+    # @rotation_B = rotation(cipher.key.keyB)
+    @decrypt_rotation_B = rotation_B.invert
+    # @rotation_C = rotation(cipher.key.keyC)
+    @decrypt_rotation_C = rotation_C.invert
+    # @rotation_D = rotation(cipher.key.keyD)
+    @decrypt_rotation_D = rotation_D.invert
     @rotation_count = 1
-    @encryption_key = e.encrypted
   end
 
-  def encrypt(input)
+  def decrypt(input)
     @input = input
     @decrypted = []
     letters = input.chars.to_a
     letters.each do |letter|
       if @rotation_count == 1
-        @decrypted << rotation_A.invert![letter]
+        @decrypted << decrypt_rotation_A[letter]
         @rotation_count += 1
       elsif @rotation_count == 2
-        @decrypted << rotation_B.invert![letter]
+        @decrypted << decrypt_rotation_B[letter]
         @rotation_count += 1
       elsif @rotation_count == 3
-        @decrypted << rotation_C.invert![letter]
+        @decrypted << decrypt_rotation_C[letter]
         @rotation_count += 1
       elsif @rotation_count == 4
-        @decrypted << rotation_D.invert![letter]
+        @decrypted << decrypt_rotation_D[letter]
         @rotation_count = 1
       end
     end

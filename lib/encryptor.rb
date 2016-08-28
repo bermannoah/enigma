@@ -3,7 +3,7 @@ require 'pry'
 
 class Encryptor < Cipher
 
-  attr_reader :cipher, :rotate
+  attr_reader :cipher, :rotate, :encrypt
   attr_accessor :encrypted, :rotation_count
 
   def initialize(date_entry)
@@ -37,11 +37,3 @@ class Encryptor < Cipher
     end
   end
 end
-
-# letters = input.chars.to_a
-# encrypted = letters.map do |letter|
-#   letter = rotation_A(letter)
-# end
-
-
-# letter.rotate(@rotation_A)
