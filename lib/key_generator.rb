@@ -7,10 +7,6 @@ class KeyGenerator
   def initialize(date_entry)
     @key = key
     @date_entry = date_entry
-    # @date_a = nil
-    # @date_b = nil
-    # @date_c = nil
-    # @date_d = nil
     @keyA = nil
     @keyB = nil
     @keyC = nil

@@ -21,16 +21,16 @@ class Cipher < KeyGenerator
   end
 
   def rotation(key)
-    characters = (' '..'z').to_a
-    rotated_characters = characters.rotate(key)
+    characters = ('A'..'Z').to_a
+    rotated_characters = characters.rotate(key.to_i).to_a
     Hash[characters.zip(rotated_characters)]
   end
 
   def rotations
-    @rotation_A = rotation(keyA)
-    @rotation_B = rotation(keyB)
-    @rotation_C = rotation(keyC)
-    @rotation_D = rotation(keyD)
+    @rotation_A = rotation(key.keyA)
+    @rotation_B = rotation(key.keyB)
+    @rotation_C = rotation(key.keyC)
+    @rotation_D = rotation(key.keyD)
   end
 
 
