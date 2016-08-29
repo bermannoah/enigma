@@ -1,13 +1,13 @@
 require './lib/encryptor'
 require 'pry'
 
-class Decryptor < Cipher
+class Decryptor < Encryptor
 
   attr_reader :cipher, :rotate, :decrypt
   attr_accessor :encrypted, :rotation_count
 
-  def initialize(date_entry)
-    @cipher 
+  def initialize(date_entry, key)
+    @cipher
     # @rotation_A = rotation(cipher.key.keyA)
     @decrypt_rotation_A = rotation_A.invert
     # @rotation_B = rotation(cipher.key.keyB)

@@ -36,4 +36,9 @@ class Encryptor < Cipher
       end
     end
   end
+
+  def print_info
+    puts "Message: #{encrypted.join}..end..,\n Date: #{cipher.date_finder}, Key: #{cipher.key.key} "
+  end
+
 end
