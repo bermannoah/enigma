@@ -7,26 +7,26 @@ require 'pry'
 class EncryptorTest < Minitest::Test
 
   def test_encryptor_can_encrypt_one_letter
-    e = Encryptor.new(280816)
+    e = Encryptor.new
     e.encrypt("A")
     assert_equal e.rotation_A["A"], e.encrypted[0]
   end
 
   def test_encryptor_can_modify_two_identical_chars
-    e = Encryptor.new(220591)
+    e = Encryptor.new
     e.encrypt("AA")
     assert_equal e.rotation_A["A"], e.encrypted[0]
   end
 
   def test_encryptor_can_modify_two_different_chars
-    e = Encryptor.new(220909)
+    e = Encryptor.new
     e.encrypt("AZ")
     assert_equal e.rotation_A["A"], e.encrypted[0]
     assert_equal e.rotation_B["Z"], e.encrypted[1]
   end
 
   def test_encryptor_can_encrypt_a_full_word
-    e = Encryptor.new(220909)
+    e = Encryptor.new
     e.encrypt("HELLO")
     assert_equal e.rotation_A["H"], e.encrypted[0]
     assert_equal e.rotation_B["E"], e.encrypted[1]
@@ -36,7 +36,7 @@ class EncryptorTest < Minitest::Test
   end
 
   def test_encryptor_can_encrypt_a_phrase
-    e = Encryptor.new(220909)
+    e = Encryptor.new
     e.encrypt("MORE COFFEE")
     assert_equal e.rotation_A["M"], e.encrypted[0]
     assert_equal e.rotation_B["O"], e.encrypted[1]
@@ -50,4 +50,13 @@ class EncryptorTest < Minitest::Test
     assert_equal e.rotation_B["E"], e.encrypted[9]
     assert_equal e.rotation_C["E"], e.encrypted[10]
   end
+
+  def test_encryptor_comes_up_with_different_rotations
+    e = Encryptor.new
+    e.encrypt("MORE COFFEE")
+    e1 = Encryptor.new
+    e1.encrypt("MORE COFFEE")
+    assert e.encrypted != e1.encrypted
+  end
+
 end

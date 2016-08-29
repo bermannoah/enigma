@@ -1,16 +1,22 @@
+require './lib/time'
 require 'pry'
 
-class KeyGenerator
+class KeyGenerator < DateGenerator
   attr_reader :key, :key_a, :key_b, :key_c, :key_d, :date_entry
   attr_accessor :date, :date_a, :date_b, :date_c, :date_d, :keyA, :keyB, :keyC, :keyD
 
-  def initialize(date_entry)
+  def initialize
     @key = key
     @date_entry = date_entry
     @keyA = nil
     @keyB = nil
     @keyC = nil
     @keyD = nil
+  end
+
+  def date_finder
+    time = DateGenerator.new
+    @date_entry = time.time_finder
   end
 
   def initial_rotations

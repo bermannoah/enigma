@@ -6,8 +6,8 @@ class Cipher < KeyGenerator
   attr_reader :key, :rotation_A, :rotation_B, :rotation_C, :rotation_D
   attr_accessor :new_key, :characters, :rotated_characters
 
-  def initialize(date_entry)
-    @key = KeyGenerator.new(date_entry)
+  def initialize
+    @key = KeyGenerator.new
     @new_key = nil
     @rotation_A = nil
     @rotation_B = nil
@@ -15,6 +15,7 @@ class Cipher < KeyGenerator
     @rotation_D = nil
     key.key
     key.initial_rotations
+    key.date_finder
     key.square
     key.last_four
     key.final_keys

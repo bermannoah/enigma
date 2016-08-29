@@ -6,8 +6,8 @@ class Encryptor < Cipher
   attr_reader :cipher, :rotate, :encrypt
   attr_accessor :encrypted, :rotation_count
 
-  def initialize(date_entry)
-    @cipher = Cipher.new(date_entry)
+  def initialize
+    @cipher = Cipher.new
     @input = nil
     @rotation_A = rotation(cipher.key.keyA)
     @rotation_B = rotation(cipher.key.keyB)
