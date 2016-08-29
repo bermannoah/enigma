@@ -16,6 +16,13 @@ class DecryptorTest < Minitest::Test
       assert_equal d.decrypt_rotation_A[e.encrypted], e.decrypted[0]
     end
 
+    def test_decryptor_can_handle_when_it_turns_something_into_quotes
+      skip
+      e.Encryptor.new
+      e.decrypt("qrwefewf''''''")
+      something else goes here
+    end
+
     def test_decryptor_can_modify_two_identical_chars
       skip
       e = Decryptor.new
