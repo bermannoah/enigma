@@ -74,4 +74,8 @@ class EncryptorTest < Minitest::Test
     assert e.encrypted != e1.encrypted
   end
 
+  def test_encryptor_can_open_a_file
+    e = Encryptor.new
+    
+
 end

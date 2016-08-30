@@ -4,7 +4,7 @@ require 'pry'
 class Encryptor < Cipher
 
   attr_reader :cipher, :rotate, :encrypt, :decrypt_rotation_A, :decrypt_rotation_B, :decrypt_rotation_C, :decrypt_rotation_D, :decrypted
-  attr_accessor :encrypted, :rotation_count
+  attr_accessor :encrypted, :input, :rotation_count
 
   def initialize
     @cipher = Cipher.new
@@ -18,6 +18,12 @@ class Encryptor < Cipher
     @decrypt_rotation_C = rotation_C.invert
     @decrypt_rotation_D = rotation_D.invert
     @rotation_count = nil
+  end
+
+  def open_file(path)
+    file = File.open(path)
+    @input = file.read
+    @input.strip
   end
 
   def encrypt(input)
