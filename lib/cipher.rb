@@ -9,10 +9,6 @@ class Cipher < KeyGenerator
   def initialize
     @key = KeyGenerator.new
     @new_key = nil
-    # @rotation_A = nil
-    # @rotation_B = nil
-    # @rotation_C = nil
-    # @rotation_D = nil
     key.key
     key.initial_rotations
     key.date_finder

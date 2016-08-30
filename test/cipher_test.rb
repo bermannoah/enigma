@@ -8,6 +8,11 @@ require 'pry'
 
 class CipherTest < Minitest::Test
 
+  def test_cipher_has_a_key
+    c = Cipher.new
+    refute_equal nil, c.key.key
+  end
+
   def test_cipher_can_use_keys_to_create_hash
     c = Cipher.new
     c.rotations
@@ -23,4 +28,12 @@ class CipherTest < Minitest::Test
     refute_equal c.rotation_D, c.rotation_A
   end
 
+  def test_cipher_has_no_nil_in_its_hashes
+    c = Cipher.new
+    c.rotations
+    assert_equal true, c.rotation_A.none? { |char| char == nil }
+    assert_equal true, c.rotation_B.none? { |char| char == nil }
+    assert_equal true, c.rotation_C.none? { |char| char == nil }
+    assert_equal true, c.rotation_D.none? { |char| char == nil }
+  end
 end
