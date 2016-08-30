@@ -21,10 +21,11 @@ class Encryptor < Cipher
   end
 
   def encrypt(input)
-    @input = input
+    @input = "#{input} ..end.."
     @encrypted = []
     @rotation_count = 1
     letters = input.chars.to_a
+    letters.push(" ", ".", ".", "e", "n", "d", ".", ".")
     letters.each do |letter|
       if @rotation_count == 1
         @encrypted << rotation_A[letter]
@@ -47,7 +48,7 @@ class Encryptor < Cipher
   end
 
   def decrypt(input) #, date_entry = cipher.date_finder, key = cipher.key.key)
-    @input = input
+    @input = input.to_s
     @decrypted = []
     @rotation_count = 1
     letters = input.chars.to_a

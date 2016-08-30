@@ -20,6 +20,19 @@ class EncryptorTest < Minitest::Test
     assert_equal e.rotation_A["A"], e.encrypted[0]
   end
 
+  def test_encryptor_can_add_dot_dot_end_to_input
+    e = Encryptor.new
+    e.encrypt("Hello")
+    assert_equal 13, e.encrypted.join.length
+  end
+
+  def test_decryptor_spits_out_a_thing_with_dot_dot_end
+    e = Encryptor.new
+    e.encrypt("Hello")
+    e.decrypt(e.encrypted.join)
+    assert_equal "Hello ..end..", e.decrypted.join
+  end
+
   def test_encryptor_can_modify_two_different_chars
     e = Encryptor.new
     e.encrypt("AZ")
