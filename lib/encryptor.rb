@@ -46,7 +46,7 @@ class Encryptor < Cipher
     puts "Message: #{encrypted.join}\n Date: #{cipher.date_finder}, Key: #{cipher.key.key} "
   end
 
-  def decrypt(input)
+  def decrypt(input) #, date_entry = cipher.date_finder, key = cipher.key.key)
     @input = input
     @decrypted = []
     @rotation_count = 1

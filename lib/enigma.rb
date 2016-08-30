@@ -1,14 +1,20 @@
 require './lib/encryptor'
-require './lib/decryptor'
 require 'pry'
 
-class Enigma
+class Enigma < Encryptor
 
-  def initialize(date_entry)
-    encrypt = Encryptor.new
-    decrypt = Decryptor.new(date_entry, key)
-    # @encrypt_date_entry = nil
-    # @decrypt_date_entry = nil
+  attr_reader :enigma_machine
+
+  def initialize
+    @enigma_machine = nil
+    @input = nil
+  end
+
+  def starter
+    @enigma_machine = Encryptor.new
+    puts "Enter the thing you'd like to encrypt > "
+    puts "Your current key is #{enigma_machine.cipher.key.key}"
+    input = gets.chomp.to_s
   end
 
 
