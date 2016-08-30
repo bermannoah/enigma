@@ -23,8 +23,11 @@ class Encryptor < Cipher
   def open_file(path)
     file = File.open(path)
     @input = file.read
-    @input.strip
+    # @input.join
+    @input = input.gsub(/\n/, " ")
   end
+
+
 
   def encrypt(input)
     @input = "#{input} ..end.."
