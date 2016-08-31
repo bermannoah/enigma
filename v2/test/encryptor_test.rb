@@ -14,12 +14,13 @@ class EncryptorTest < Minitest::Test
     assert_equal "they are on to us!", e.input
     assert_equal "12345", e.key
     assert_equal 300816, e.date
-    binding.pry
   end
 
   def test_encryptor_can_pass_information_to_cipher
     e = Encryptor.new
     e.encrypt("they are on to us!", "12345", 300816)
-    
+  end
+
+  def test_encryptor_can_
 
 end

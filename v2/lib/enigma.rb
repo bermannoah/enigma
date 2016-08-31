@@ -1,5 +1,6 @@
 require './lib/cipher'
 require './lib/decryptor'
+require './lib/cracker'
 
 class Enigma < Decryptor
 
@@ -22,6 +23,13 @@ class Enigma < Decryptor
       d.decrypt(input, key, date)
       puts "#{d.decrypted.join}"
       puts "and the key was #{d.key}"
-    end
+  end
+
+  def crack(input=" ", key = Cipher.new.key, date = Cipher.new.time_finder)
+    c = Cracker.new
+      c.crack(input, key, date)
+      puts "#{c.cracked.join}"
+      puts "and the key was #{c.key}"
+  end
 
 end
