@@ -28,6 +28,7 @@ class Encryptor < Cipher
   def encryption_rotator(input)
     @encrypted = []
     @rotation_count = 1
+    input.gsub(/\n/, " ")
     letters = input.each_char.to_a
     letters.push(" ", ".", ".", "e", "n", "d", ".", ".")
     letters.each do |letter|
