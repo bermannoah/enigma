@@ -3,7 +3,7 @@ require './lib/cipher'
 class Encryptor < Cipher
 
   attr_reader :rotation_A, :rotation_B, :rotation_C, :rotation_D
-  attr_accessor :input, :encrypted
+  attr_accessor :input, :encrypted, :encrypt
 
   def encrypt(input=" ", date = Cipher.new.time_finder, key = Cipher.new.key)
     @input = input
@@ -28,7 +28,7 @@ class Encryptor < Cipher
   def encryption_rotator(input)
     @encrypted = []
     @rotation_count = 1
-    letters = input.chars.to_a
+    letters = input.each_char.to_a
     letters.push(" ", ".", ".", "e", "n", "d", ".", ".")
     letters.each do |letter|
       if @rotation_count == 1
@@ -47,7 +47,4 @@ class Encryptor < Cipher
       @encrypted
     end
   end
-
-
-
 end

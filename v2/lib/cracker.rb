@@ -29,13 +29,14 @@ class Cracker < Decryptor
       @d.decrypt(input, date, key)
       @cracked = d.decrypted[-7..-1].join
       @counter += 1
-      # binding.pry
+      @clear_text = d.decrypted.join
+      puts @clear_text # optional
       if @counter == 99999
         break
-        @cracked
+        puts "Try again."
       end
     end
-    @cracked
+
   end
 
 end
