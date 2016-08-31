@@ -4,8 +4,8 @@ class Decryptor < Encryptor
 
   attr_reader :decrypt_rotation_A, :decrypt_rotation_B, :decrypt_rotation_C, :decrypt_rotation_D
   attr_accessor :decrypted
-  
-  def decrypt(input=" ", key = Cipher.new.key, date = Cipher.new.time_finder)
+
+  def decrypt(input=" ", date = Cipher.new.time_finder, key = Cipher.new.key)
     @input = input
     @key = key
     @date = date

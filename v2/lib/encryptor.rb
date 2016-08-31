@@ -5,7 +5,7 @@ class Encryptor < Cipher
   attr_reader :rotation_A, :rotation_B, :rotation_C, :rotation_D
   attr_accessor :input, :encrypted
 
-  def encrypt(input=" ", key = Cipher.new.key, date = Cipher.new.time_finder)
+  def encrypt(input=" ", date = Cipher.new.time_finder, key = Cipher.new.key)
     @input = input
     @key = key
     @date = date
