@@ -30,8 +30,8 @@ class Cracker < Decryptor
       @cracked = d.decrypted[-7..-1].join
       @counter += 1
       @clear_text = d.decrypted.join
-      puts @clear_text # optional
-      if @counter == 99999
+      puts @clear_text # optional but extremely cool
+      if @counter == 1_000_000 # number can be changed if it turns out to be excessive
         break
         puts "Try again."
       end
