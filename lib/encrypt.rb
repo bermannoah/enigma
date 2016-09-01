@@ -8,9 +8,10 @@ encrypt_instance = Encryptor.new
 filename = ARGV[0]
 
 raw_text = File.read(filename)
-raw_text.gsub("\n", " ")
 
-encrypt_instance.encrypt(raw_text, date = Cipher.new.time_finder, key = Cipher.new.key)
+edited_raw_text = raw_text.gsub("\n", " ")
+
+encrypt_instance.encrypt(edited_raw_text, key = Cipher.new.key, date = Cipher.new.time_finder)
 
 output = encrypt_instance.encrypted.join
 

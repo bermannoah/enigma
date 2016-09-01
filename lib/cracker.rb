@@ -4,7 +4,7 @@ require 'pry'
 
 class Cracker < Decryptor
 
-  attr_reader :cracked, :d, :input, :key, :date
+  attr_reader :cracked, :d, :input, :key, :date, :clear_text
   attr_accessor :key, :key_saver, :keys_used
 
   def initialize
@@ -16,6 +16,7 @@ class Cracker < Decryptor
   def key_saver(key)
     @keys_used = []
     @keys_used << key
+    @keys_used.last
   end
 
   def crack(input=" ", date=Cipher.new.time_finder, key=10000)
@@ -26,7 +27,7 @@ class Cracker < Decryptor
       if keys_used.include?(key)
         key = Cipher.new.key
       end
-      @d.decrypt(input, date, key)
+      @d.decrypt(input, key, date)
       @cracked = d.decrypted[-7..-1].join
       @counter += 1
       @clear_text = d.decrypted.join
@@ -36,7 +37,7 @@ class Cracker < Decryptor
         puts "Try again."
       end
     end
-
+    @cracked = []
   end
 
 end
