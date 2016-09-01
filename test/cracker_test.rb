@@ -1,4 +1,4 @@
- gem 'minitest', '~> 5.2'
+gem 'minitest', '~> 5.2'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'simplecov'
@@ -8,20 +8,18 @@ require 'pry'
 
 class CrackerTest < Minitest::Test
 
-  brute_force
+ def test_cracker_can_decrypt_something_given_all_the_info
 
-  results = false
-  cracked = []
-  input which is an array . one? do |string|
-    key = rand(10000..99999)
-    date = gets.chomp
-    e.decrypt()
-    "..end.."
+   c = Cracker.new
+   c.crack("`$,K,\"6Gz BG$8B[:!56:E", 300816, 12345)
+   assert_equal "..end..", c.cracked
+ end
 
+ def test_cracker_can_decrypt_something_given_no_info
 
-  until decrypted.join(-7..-1) == "..end.."
-    key = rand(10000..99999)
-    e.decrypt(input, key, date)
-
+   c = Cracker.new
+   c.crack("`$,K,\"6Gz BG$8B[:!56:E", 300816)
+   assert_equal "..end..", c.cracked
+ end
 
 end

@@ -1,21 +1,35 @@
-require './lib/encryptor'
-require 'pry'
+require './lib/cipher'
+require './lib/decryptor'
+require './lib/cracker'
 
-class Enigma < Encryptor
+class Enigma < Decryptor
 
-  attr_reader :enigma_machine
+  attr_reader :key
 
-  def initialize
-    @enigma_machine = nil
-    @input = nil
+  def new_key_generator
+    kg = KeyGenerator.new
+    key = kg.key
   end
 
-  def starter
-    @enigma_machine = Encryptor.new
-    puts "Enter the thing you'd like to encrypt > "
-    puts "Your current key is #{enigma_machine.cipher.key.key}"
-    input = gets.chomp.to_s
+  def encrypt(input=" ", key = Cipher.new.key, date = Cipher.new.time_finder)
+    e = Encryptor.new
+      e.encrypt(input, key, date)
+      puts "#{e.encrypted.join}"
+      puts "and the key is: #{e.key}"
   end
 
+  def decrypt(input=" ", key = Cipher.new.key, date = Cipher.new.time_finder)
+    d = Decryptor.new
+      d.decrypt(input, key, date)
+      puts "#{d.decrypted.join}"
+      puts "and the key was #{d.key}"
+  end
+
+  def crack(input=" ", key = Cipher.new.key, date = Cipher.new.time_finder)
+    c = Cracker.new
+      c.crack(input, key, date)
+      puts "#{c.cracked.join}"
+      puts "and the key was #{c.key}"
+  end
 
 end

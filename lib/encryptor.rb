@@ -1,39 +1,35 @@
 require './lib/cipher'
-require 'pry'
 
 class Encryptor < Cipher
 
-  attr_reader :cipher, :rotate, :encrypt, :decrypt_rotation_A, :decrypt_rotation_B, :decrypt_rotation_C, :decrypt_rotation_D, :decrypted
-  attr_accessor :encrypted, :input, :rotation_count
+  attr_reader :rotation_A, :rotation_B, :rotation_C, :rotation_D
+  attr_accessor :input, :encrypted, :encrypt
 
-  def initialize
-    @cipher = Cipher.new
-    @input = nil
-    @rotation_A = rotation(cipher.key.keyA)
-    @rotation_B = rotation(cipher.key.keyB)
-    @rotation_C = rotation(cipher.key.keyC)
-    @rotation_D = rotation(cipher.key.keyD)
-    @decrypt_rotation_A = rotation_A.invert
-    @decrypt_rotation_B = rotation_B.invert
-    @decrypt_rotation_C = rotation_C.invert
-    @decrypt_rotation_D = rotation_D.invert
-    @rotation_count = nil
+  def encrypt(input=" ", date = Cipher.new.time_finder, key = Cipher.new.key)
+    @input = input
+    @key = key
+    @date = date
+    create_encryption_hash
+    encryption_rotator(input)
   end
 
-  def open_file(path)
-    file = File.open(path)
-    @input = file.read
-    # @input.join
-    @input = input.gsub(/\n/, " ")
+  def create_encryption_hash
+    c = Cipher.new(key)
+    c.date_entry(@date)
+    c.find_first_rotations
+    c.generate_offset
+    c.find_final_keys
+    @rotation_A = rotate(c.keyA)
+    @rotation_B = rotate(c.keyB)
+    @rotation_C = rotate(c.keyC)
+    @rotation_D = rotate(c.keyD)
   end
 
-
-
-  def encrypt(input)
-    @input = "#{input} ..end.."
+  def encryption_rotator(input)
     @encrypted = []
     @rotation_count = 1
-    letters = input.chars.to_a
+    input.gsub(/\n/, " ")
+    letters = input.each_char.to_a
     letters.push(" ", ".", ".", "e", "n", "d", ".", ".")
     letters.each do |letter|
       if @rotation_count == 1
@@ -49,41 +45,7 @@ class Encryptor < Cipher
         @encrypted << rotation_D[letter]
         @rotation_count = 1
       end
+      @encrypted
     end
   end
-
-  def print_info
-    puts "Message: #{encrypted.join}\n Date: #{cipher.date_finder}, Key: #{cipher.key.key} "
-  end
-
-  def decrypt(input) #, date_entry = cipher.date_finder, key = cipher.key.key)
-    @input = input.to_s
-    @decrypted = []
-    @rotation_count = 1
-    letters = input.chars.to_a
-    letters.each do |letter|
-      if @rotation_count == 1
-        @decrypted << decrypt_rotation_A[letter]
-        @rotation_count += 1
-      elsif @rotation_count == 2
-        @decrypted << decrypt_rotation_B[letter]
-        @rotation_count += 1
-      elsif @rotation_count == 3
-        @decrypted << decrypt_rotation_C[letter]
-        @rotation_count += 1
-      elsif @rotation_count == 4
-        @decrypted << decrypt_rotation_D[letter]
-        @rotation_count = 1
-      end
-    end
-  end
-
-
-  def print_decrypted_info
-    puts "Decrypted message: #{decrypted.join}\n Date: #{cipher.date_finder}, Key: #{cipher.key.key} "
-  end
-
-
-
-
 end
