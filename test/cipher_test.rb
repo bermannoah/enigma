@@ -72,13 +72,6 @@ class CipherTest < Minitest::Test
     refute_equal nil, c.offset_a
   end
 
-  # def test_cipher_can_handle_an_octal_digit
-  #   skip
-  #   c = Cipher.new
-  #   c.date_entry(090116)
-  #   assert_equal "090116", c.date
-  # end
-
   def test_cipher_can_create_final_keys
     c = Cipher.new(12345)
     c.find_first_rotations
