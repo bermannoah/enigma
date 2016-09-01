@@ -11,15 +11,19 @@ filename = ARGV[0]
 
 cipher_text = File.read(filename)
 
-decrypt_instance.decrypt(cipher_text, date = ARGV[3], key = ARGV[2])
+decrypt_instance.decrypt(cipher_text, key = ARGV[2], date = ARGV[3])
+
+if date.nil?
+  date = Cipher.new.time_finder
+end
 
 output = decrypt_instance.decrypted.join
 
 decrypted_filename = ARGV[1]
 
-# encrypted = open(encrypted_filename, "w")
 
 File.write(decrypted_filename, output)
+puts "Created '#{decrypted_filename}' with the key #{decrypt_instance.key} and the date #{date}"
 
 
 end

@@ -9,14 +9,14 @@ class Encryptor < Cipher
   def encrypt(input=" ", key = Cipher.new.key, date = Cipher.new.time_finder)
     @input = input
     @key = key
-    @date = date
+    @date = date.to_s
     create_encryption_hash
     encryption_rotator(input)
   end
 
   def create_encryption_hash
     c = Cipher.new(key)
-    c.date_entry(@date)
+    c.date_entry(@date.to_s)
     c.find_first_rotations
     c.generate_offset
     c.find_final_keys

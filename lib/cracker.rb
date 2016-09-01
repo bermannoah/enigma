@@ -16,11 +16,10 @@ class Cracker < Decryptor
   def key_saver(key)
     @keys_used = []
     @keys_used << key
-    @keys_used.last
+    @keys_used
   end
 
   def crack(input, date=Cipher.new.time_finder, key=10000)
-    binding.pry
     @d = Decryptor.new
     until @cracked.include?("..end..")
       key = Cipher.new.key

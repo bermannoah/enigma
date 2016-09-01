@@ -11,7 +11,13 @@ raw_text = File.read(filename)
 
 edited_raw_text = raw_text.gsub("\n", " ")
 
-encrypt_instance.encrypt(edited_raw_text, key = Cipher.new.key, date = Cipher.new.time_finder)
+date = ARGV[2]
+
+if date.nil?
+  date = Cipher.new.time_finder
+end
+
+encrypt_instance.encrypt(edited_raw_text, key = Cipher.new.key, date)
 
 output = encrypt_instance.encrypted.join
 
