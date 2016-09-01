@@ -3,8 +3,8 @@ require 'pry'
 
 class Encryptor < Cipher
 
-  attr_reader :rotation_A, :rotation_B, :rotation_C, :rotation_D
-  attr_accessor :input, :encrypted, :encrypt
+  attr_reader :rotation_a, :rotation_b, :rotation_c, :rotation_d
+  attr_accessor :input, :encrypted, :encrypt, :final
 
   def encrypt(input=" ", key = Cipher.new.key, date = Cipher.new.time_finder)
     @input = input
@@ -20,10 +20,10 @@ class Encryptor < Cipher
     c.find_first_rotations
     c.generate_offset
     c.find_final_keys
-    @rotation_A = rotate(c.keyA)
-    @rotation_B = rotate(c.keyB)
-    @rotation_C = rotate(c.keyC)
-    @rotation_D = rotate(c.keyD)
+    @rotation_a = rotate(c.rotation_key_a)
+    @rotation_b = rotate(c.rotation_key_b)
+    @rotation_c = rotate(c.rotation_key_c)
+    @rotation_d = rotate(c.rotation_key_d)
   end
 
   def encryption_rotator(input)
@@ -33,16 +33,16 @@ class Encryptor < Cipher
     letters.push(" ", ".", ".", "e", "n", "d", ".", ".")
     letters.each do |letter|
       if @rotation_count == 1
-        @encrypted << rotation_A[letter]
+        @encrypted << rotation_a[letter]
         @rotation_count += 1
       elsif @rotation_count == 2
-        @encrypted << rotation_B[letter]
+        @encrypted << rotation_b[letter]
         @rotation_count += 1
       elsif @rotation_count == 3
-        @encrypted << rotation_C[letter]
+        @encrypted << rotation_c[letter]
         @rotation_count += 1
       elsif @rotation_count == 4
-        @encrypted << rotation_D[letter]
+        @encrypted << rotation_d[letter]
         @rotation_count = 1
       end
 

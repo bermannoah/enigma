@@ -2,7 +2,7 @@ require './lib/encryptor'
 
 class Decryptor < Encryptor
 
-  attr_reader :decrypt_rotation_A, :decrypt_rotation_B, :decrypt_rotation_C, :decrypt_rotation_D
+  attr_reader :decrypt_rotation_a, :decrypt_rotation_b, :decrypt_rotation_c, :decrypt_rotation_d
   attr_accessor :decrypted
 
   def decrypt(input=" ", key = Cipher.new.key, date = Cipher.new.time_finder)
@@ -19,10 +19,10 @@ class Decryptor < Encryptor
     c.find_first_rotations
     c.generate_offset
     c.find_final_keys
-    @decrypt_rotation_A = rotate(c.keyA).invert
-    @decrypt_rotation_B = rotate(c.keyB).invert
-    @decrypt_rotation_C = rotate(c.keyC).invert
-    @decrypt_rotation_D = rotate(c.keyD).invert
+    @decrypt_rotation_a = rotate(c.rotation_key_a).invert
+    @decrypt_rotation_b = rotate(c.rotation_key_b).invert
+    @decrypt_rotation_c = rotate(c.rotation_key_c).invert
+    @decrypt_rotation_d = rotate(c.rotation_key_d).invert
   end
 
   def decryption_rotator(input)
@@ -31,16 +31,16 @@ class Decryptor < Encryptor
     letters = input.chars.to_a
     letters.each do |letter|
       if @rotation_count == 1
-        @decrypted << decrypt_rotation_A[letter]
+        @decrypted << decrypt_rotation_a[letter]
         @rotation_count += 1
       elsif @rotation_count == 2
-        @decrypted << decrypt_rotation_B[letter]
+        @decrypted << decrypt_rotation_b[letter]
         @rotation_count += 1
       elsif @rotation_count == 3
-        @decrypted << decrypt_rotation_C[letter]
+        @decrypted << decrypt_rotation_c[letter]
         @rotation_count += 1
       elsif @rotation_count == 4
-        @decrypted << decrypt_rotation_D[letter]
+        @decrypted << decrypt_rotation_d[letter]
         @rotation_count = 1
       end
 

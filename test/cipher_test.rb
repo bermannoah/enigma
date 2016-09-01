@@ -86,10 +86,10 @@ class CipherTest < Minitest::Test
     c.date_square
     c.generate_offset
     c.find_final_keys
-    assert_equal 15, c.keyA
-    assert_equal 27, c.keyB
-    assert_equal 39, c.keyC
-    assert_equal 51, c.keyD
+    assert_equal 15, c.rotation_key_a
+    assert_equal 27, c.rotation_key_b
+    assert_equal 39, c.rotation_key_c
+    assert_equal 51, c.rotation_key_d
   end
 
 end

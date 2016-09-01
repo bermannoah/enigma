@@ -19,7 +19,8 @@ class Cracker < Decryptor
     @keys_used.last
   end
 
-  def crack(input=" ", date=Cipher.new.time_finder, key=10000)
+  def crack(input, date=Cipher.new.time_finder, key=10000)
+    binding.pry
     @d = Decryptor.new
     until @cracked.include?("..end..")
       key = Cipher.new.key

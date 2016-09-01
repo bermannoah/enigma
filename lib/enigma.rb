@@ -9,6 +9,6 @@ class Enigma < Cracker
     key = kg.key
   end
 
-  
+
 
 end

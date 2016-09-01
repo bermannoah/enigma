@@ -3,7 +3,7 @@ require 'pry'
 
 class Cipher < KeyGenerator
 
-  attr_reader :rotation_A, :rotation_B, :rotation_C, :rotation_D, :characters, :key_a, :key_b, :key_c, :key_d, :date_squared, :offset_a, :offset_b, :offset_c, :offset_d, :keyA, :keyB, :keyC, :keyD
+  attr_reader :rotation_A, :rotation_B, :rotation_C, :rotation_D, :characters, :key_a, :key_b, :key_c, :key_d, :date_squared, :offset_a, :offset_b, :offset_c, :offset_d, :rotation_key_a, :rotation_key_b, :rotation_key_c, :rotation_key_d
   attr_accessor :key, :date, :today
 
   def initialize(key = rand(10000..99999))
@@ -40,10 +40,10 @@ class Cipher < KeyGenerator
   end
 
   def find_final_keys
-    @keyA = key_a + offset_a
-    @keyB = key_b + offset_b
-    @keyC = key_c + offset_c
-    @keyD = key_d + offset_d
+    @rotation_key_a = key_a + offset_a
+    @rotation_key_b = key_b + offset_b
+    @rotation_key_c = key_c + offset_c
+    @rotation_key_d = key_d + offset_d
   end
 
   def rotate(key)
@@ -52,6 +52,6 @@ class Cipher < KeyGenerator
     Hash[characters.zip(rotated_characters)]
   end
 
-  
+
 
 end
