@@ -29,7 +29,7 @@ class Encryptor < Cipher
     @encrypted = []
     @rotation_count = 1
     input.gsub(/\n/, " ")
-    letters = input.each_char.to_a
+    letters = input.chars.to_a
     letters.push(" ", ".", ".", "e", "n", "d", ".", ".")
     letters.each do |letter|
       if @rotation_count == 1
@@ -45,7 +45,9 @@ class Encryptor < Cipher
         @encrypted << rotation_D[letter]
         @rotation_count = 1
       end
-      @encrypted
+
     end
+    final = @encrypted.join
+    final
   end
 end

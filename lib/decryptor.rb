@@ -28,7 +28,7 @@ class Decryptor < Encryptor
   def decryption_rotator(input)
     @decrypted = []
     @rotation_count = 1
-    letters = input.each_char.to_a
+    letters = input.chars.to_a
     letters.each do |letter|
       if @rotation_count == 1
         @decrypted << decrypt_rotation_A[letter]
@@ -43,7 +43,9 @@ class Decryptor < Encryptor
         @decrypted << decrypt_rotation_D[letter]
         @rotation_count = 1
       end
-      @decrypted
+
     end
+    final_decrypted = @decrypted.join
+    final_decrypted
   end
 end
