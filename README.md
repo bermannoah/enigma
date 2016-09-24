@@ -1,6 +1,2 @@
 # enigma
-Turing Code School Mod1 Assignment
-
-"863Xd0,Pk $j\\))Vdw;\\Xy(Xe IjE*4j^-%Pk6&^i6(X[$.Vr.5Qdw2Xe 3xrDITezIx"
-
-31 - 08 - 16
+Replicating the infamous World War 2 Enigma Machine in raw ruby. It took the smartest women and men in the world years (while bombs fell around them!) to figure this encryption machine out. It took us a week in a comfortable basement in downtown Denver. Times have changed.
