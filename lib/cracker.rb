@@ -21,6 +21,7 @@ class Cracker < Decryptor
 
   def crack(input, date=Cipher.new.time_finder, key=10000)
     @d = Decryptor.new
+    puts "The cracker is running. We appreciate your patience."
     until @cracked.include?("..end..")
       key = Cipher.new.key
       key_saver(key)
@@ -31,8 +32,7 @@ class Cracker < Decryptor
       @cracked = d.decrypted[-7..-1].join
       @counter += 1
       @clear_text = d.decrypted.join
-      puts @clear_text # optional but extremely cool
-      if @counter == 1_000_000 # number can be changed if it turns out to be excessive
+      if @counter == 1_000_000
         break
         puts "Try again."
       end

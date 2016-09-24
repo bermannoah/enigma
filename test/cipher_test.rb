@@ -47,6 +47,17 @@ class CipherTest < Minitest::Test
     c.date_square
     assert_equal 90490265856, c.date_squared
   end
+  
+  def test_cipher_can_find_first_rotations
+    c = Cipher.new(12345)
+    c.date_entry(300816)
+    c.date_square
+    c.find_first_rotations
+    assert_equal 12, c.key_a
+    assert_equal 23, c.key_b
+    assert_equal 34, c.key_c
+    assert_equal 45, c.key_d
+  end
 
   def test_cipher_can_come_up_with_offset
     c = Cipher.new
@@ -80,5 +91,11 @@ class CipherTest < Minitest::Test
     assert_equal 39, c.rotation_key_c
     assert_equal 51, c.rotation_key_d
   end
+  
+  def test_cipher_can_rotate_a_key
+    c = Cipher.new(12345)
+    assert_equal "S", c.rotate(1234).values[0]
+  end
+    
 
 end
