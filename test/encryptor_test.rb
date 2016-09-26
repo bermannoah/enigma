@@ -36,7 +36,6 @@ class EncryptorTest < Minitest::Test
     assert_equal "T!3> 7P[q*+[:", e.encrypt("Hello", 12345, 171010)
   end
   
-  
   def test_encryptor_can_encrypt_if_not_given_date
     e = Encryptor.new
     e.encrypt("Hello", Cipher.new.key, 12345)
@@ -54,7 +53,6 @@ class EncryptorTest < Minitest::Test
     e.encrypt("Hello")
     refute "Hello" == e.encrypted
   end
-
 
   def test_encryptor_can_pass_information_to_cipher
     e = Encryptor.new
